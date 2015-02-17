@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-BASE=/home/jenkins/restspring/
+BASE=/home/jenkins/
 PID=$BASE/app.pid
 LOG=$BASE/console.log
 ERROR=$BASE/error.log
