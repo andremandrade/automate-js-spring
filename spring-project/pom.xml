@@ -51,12 +51,4 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>analysis</id>
-			<properties>
-				
-			</properties>
-		</profile>
-	</profiles>
 </project>
