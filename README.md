@@ -1,3 +1,5 @@
+[this document is on construction]
+
 # Automate independent Javascript and Rest-Spring Projects
 
 (Project automation and management) + (Quality and CI process) approach for detached JavaScritp and Rest Resource applications
@@ -79,9 +81,29 @@ Having a correct directory structure you need only a pom.xml:
 </project>
 ----
 
-Now you already to run the first DEV-pipeline's job.
+Now you are ready to run the first DEV-pipeline's job.
 
 ### Jenkins DEV Pipeline
+
+We consider now you have Jenkins server installed and runnning. First you need know that `pipeline` is just a view offered by <a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Pipeline+Plugin">Build Pipeline Plugin</a> to illustrate downstream and upstream of Jenkins jobs (jobs that runs another jobs).
+
+Now, see DEV pipeline we defined:
+
+<img src='readme/jenkins-pipe-dev.png'/>
+
+#### DEV: Job #1 - TEST (rest-spring-DEV-TEST)
+
+Previously I said you are ready to run DEV pipeline. This means that you do not need configure anything in your project to run the TEST job. Ok, let's go.
+
+This job consists in
+
+- declare parameters
+- clone project repository
+- run a maven goal (test)
+- report fail if exists
+
+[this document is on construction]
+
 
 
 
