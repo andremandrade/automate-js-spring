@@ -38,7 +38,7 @@ The application we wrote have only a resource named `books` that accept 4 HTTP m
 ### Create a Spring Project 
 
 Our Rest Spring application uses Spring-boot as a way to simplify project configuration and run.
-Having a correct directory structure you need only a pom.xml:
+Having a correct directory structure you just need a pom.xml like this:
 
 
 ----
@@ -93,17 +93,53 @@ Now, see DEV pipeline we defined:
 
 #### DEV: Job #1 - TEST (rest-spring-DEV-TEST)
 
-Previously I said you are ready to run DEV pipeline. This means that you do not need configure anything in your project to run the TEST job. Ok, let's go.
+Previously I said you are ready to run DEV pipeline. This means that you do not need configure anymore in your project to run the TEST job. Ok, let's go.
 
 This job consists in
 
 - declare parameters
 - clone project repository
 - run a maven goal (test)
-- report fail if exists
+- report fail (to your web-hook receiver) if exists 
+
+#### Declare Parameters
+
+First, remeber that this job will be runned by a web-hook when a merge request occurs. So, if you want have a single job to be used by all your branchs, you need to parametrize the job.
+
+Declare two string parameters:
+
+- `branch` - to be identify what branch jenkins will download
+- `mergeId` - to pass as a parameter to report fail or succes to your web-hook receiver
+
+On Jenkins, you will have anything like this:
+
+<img src='readme/jenkins-pipe-dev-parameters.png'/>
+
+#### Clone Project Repository
+
+`Git is not installed in Jenkins by default, you need install Git Plugin`
+
+Now, you have to specify your repository path to download. Here we are using git, so we will use `branch` parameter to specify the we want to fecth and pull.
+
+On Jenkins, you will have anything like this:
+
+**PAY ATTENTION HOW TO USE THE `branch` PARAMETER TO SPECIFY THE BRANCH**
+
+<img src='readme/jenkins-pipe-dev-git.png'/>
+
+#### Run a Maven Goal (test)
+
+Now you will configure the test execution. You need `Add Build step` and choose `Invoke top-level Maven targets`.
+The goal you need to use is `test`.
+
+On Jenkins, you will have anything like this:
+
+`NOTE: IF YOUR pom.xml IS NOT ON THE ROOT OF REPOSITORY YOU NEED TO USE ADVANCED OPTIONS`
+
+<img src='readme/jenkins-pipe-dev-maven.png'/>
+
+#### Report Fail If Exists
+
+
 
 [this document is on construction]
-
-
-
-
